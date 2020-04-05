@@ -1,5 +1,4 @@
-
-    #include <Smartcar.h>
+#include <Smartcar.h>
 
         BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
         BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
@@ -18,10 +17,8 @@
         }
 
         void loop() {
-            Serial.println(front.getDistance());
-            delay(100);
 
-            if(front.getDistance<=15) {
+            if(front.getDistance() <= 15) {
                 car.setSpeed(0);
             } else {
                 car.setSpeed(50);
