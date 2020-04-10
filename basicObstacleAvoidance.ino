@@ -17,8 +17,10 @@
         }
 
         void loop() {
+                
+            int distance = front.getDistance();
 
-            if(front.getDistance() <= 15) {
+            if(distance != 0 && distance <= 15) {
                 car.setSpeed(0);
             } else {
                 car.setSpeed(50);
