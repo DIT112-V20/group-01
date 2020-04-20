@@ -5,7 +5,7 @@
 //and also demonstrate that SerialBT have the same functionalities of a normal Serial
 #include <Smartcar.h>
 #include "BluetoothSerial.h"
-//THIS IS JUST A TEST DELETE LATER
+//THIS IS JUST A TEST DELETE LATER.
 
 
 
