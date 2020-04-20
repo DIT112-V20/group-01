@@ -64,16 +64,30 @@ void loop() {
     Serial.write(incomingChar);
   }
 
-   
+
 
   if (message == "forward") { // rotate counter-clockwise going forward
     car.setSpeed(fSpeed);
-   
+
   }
- if (front.getDistance() != 0 && front.getDistance() <= 15){
-      car.setSpeed(0);
+  if (front.getDistance() != 0 && front.getDistance() <= 15) {
+    car.setSpeed(0);
+  }
+
+  if (message == "left") { // rotate counter-clockwise going forward
+    car.setSpeed(fSpeed);
+    car.setAngle(lDegrees);
+  }
+  if (message == "right") { // turn clock-wise
+    car.setSpeed(fSpeed);
+    car.setAngle(rDegrees);
+  }
     }
- 
+  if (message == "backwards") { // go back
+    car.setSpeed(bSpeed);
+    car.setAngle(0);
+  }
+
 
   delay(20);
 }
