@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CarController</string>
+    <string name="user">User</string>
+    <string name="hello">Hello,</string>
+    <string name="_23_05">23:05</string>
+    <string name="manual">Manual</string>
+    <string name="auto">Auto</string>
+    <string name="placeholder">PLACEHOLDER</string>
+    <string name="fwd">FWD</string>
+    <string name="right">Right</string>
+    <string name="left">Left</string>
+    <string name="bwd">BWD</string>
+</resources>
