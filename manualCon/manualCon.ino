@@ -19,22 +19,31 @@ char incomingChar;
 
 
 
-const int fSpeed   = 70;  // 70% of the full speed forward
-const int bSpeed   = -70; // 70% of the full speed backward
+const int fSpeed   = 0.5;  // 70% of the full speed forward
+const int bSpeed   = -0.5; // 70% of the full speed backward
 const int lDegrees = -75; // degrees to turn left
 const int rDegrees = 75;  // degrees to turn right
+
 
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
+GY50 gyroscope(37);
+
+const auto pulsesPerMeter = 600;
+
+DirectionlessOdometer leftOdometer(
+    smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
+DirectionlessOdometer rightOdometer(
+    smartcarlib::pins::v2::rightOdometerPin, []() { rightOdometer.update(); }, pulsesPerMeter);
+
+SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
+
 
 const int TRIGGER_PIN = 5; //D5
 const int ECHO_PIN = 4; //D4
 const unsigned int MAX_DISTANCE = 100;
 SR04 front(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
-
-SimpleCar car(control);
-
 
 
 
@@ -43,16 +52,18 @@ void setup() {
   Serial.begin(115200);
   SerialBT.begin("ESP32test"); //Bluetooth device name
   Serial.println("The device started, now you can pair it with bluetooth!");
-  pinMode(LED_BUILTIN, OUTPUT);
+ car.enableCruiseControl();
 
 
 }
 
 
 void loop() {
+car.update();
+  handleInput();
+}
 
-
-
+void handleInput(){
   if (SerialBT.available()) {
     char incomingChar = SerialBT.read();
     if (incomingChar != '\n') {
@@ -87,6 +98,20 @@ void loop() {
     car.setSpeed(bSpeed);
     car.setAngle(0);
   }
+
+  if(message=="incSpeed" ){
+    car.setSpeed(car.getSpeed()+0.2);
+  }
+
+  if(message=="decSpeed" && car.getSpeed()>=0){
+    car.setSpeed(car.getSpeed()-0.2);
+  }
+
+  else if (message == "stop" || (front.getDistance() != 0 && front.getDistance() <= 15)) {
+    car.setSpeed(0);
+    car.setAngle(0);
+  }
+  
 
 
   delay(20);
