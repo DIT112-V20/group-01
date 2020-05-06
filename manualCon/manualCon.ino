@@ -93,7 +93,7 @@ void handleInput(){
     car.setSpeed(fSpeed);
     car.setAngle(rDegrees);
   }
-    }
+    
   if (message == "backwards") { // go back
     car.setSpeed(bSpeed);
     car.setAngle(0);
