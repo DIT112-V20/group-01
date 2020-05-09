@@ -87,14 +87,14 @@ void loop() {
 void handleInput() {
   if (Firebase.getString(firebasedata, "/manual/forward")) {
 
-    String val = firebasedata.stringData();
-    Serial.println(val);
-    if (val == "on") {
-      car.setSpeed(fSpeed);
-      car.setAngle(0);
-    } else if (val == "off") {
-      car.setSpeed(0);
-    }  
+      String val = firebasedata.stringData();
+      Serial.println(val);
+      if (val == "on") {
+        car.setSpeed(fSpeed);
+        car.setAngle(0);
+      } else if (val == "off") {
+        car.setSpeed(0);
+      }  
 
   }
 
@@ -136,3 +136,4 @@ void handleInput() {
     }  
 
   }
+}
