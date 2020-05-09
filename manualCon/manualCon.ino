@@ -8,12 +8,12 @@
 
 #include <FirebaseESP32.h>
 #include <WiFi.h>             //wifi library
-#define WIFI_SSID "OWNIT_24GHz_4E4C0D"             //replace SSID with your wifi username
-#define WIFI_PASSWORD "4F75D9E491"          //replace PWD with your wifi password
+#define WIFI_SSID "OWNIT*******"             //replace SSID with your wifi username
+#define WIFI_PASSWORD "4F*******"          //replace PWD with your wifi password
 //#define WIFI_LED D5                  //connect a led to any of the gpio pins of the board and replace pin_number with it eg. D4
 FirebaseData firebasedata;
-#define FIREBASE_HOST "https://testing2-ce90b.firebaseio.com/"                         //link of api
-#define FIREBASE_AUTH "Z0Ea0vK4xmlByoYgI8mR1t2oCz1l7qqDCrvyKS0V"           //database secret
+#define FIREBASE_HOST "https://*****-ce90b.firebaseio.com/"                         //link of api
+#define FIREBASE_AUTH "Z0Ea0vK4xmlByoYgI8mR1t2***********"           //database secret
 
 
 
@@ -87,14 +87,14 @@ void loop() {
 void handleInput() {
   if (Firebase.getString(firebasedata, "/manual/forward")) {
 
-    String val = firebasedata.stringData();
-    Serial.println(val);
-    if (val == "on") {
-      car.setSpeed(fSpeed);
-      car.setAngle(0);
-    } else if (val == "off") {
-      car.setSpeed(0);
-    }  
+      String val = firebasedata.stringData();
+      Serial.println(val);
+      if (val == "on") {
+        car.setSpeed(fSpeed);
+        car.setAngle(0);
+      } else if (val == "off") {
+        car.setSpeed(0);
+      }  
 
   }
 

@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
         Button nButton = (Button) findViewById(R.id.manuButton);
         nButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, manualPage.class));
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, manualPage.class);
+                startActivity(intent);
             }
         });
 
