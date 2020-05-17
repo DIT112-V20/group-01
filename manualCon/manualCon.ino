@@ -157,7 +157,7 @@ void handleInput() {
     car.setSpeed(0);
     car.setAngle(0);
   }
-}
+
 
 if ( Firebase.getString(firebasedata2, "/auto")) {
     String autoVal = firebasedata2.stringData();
