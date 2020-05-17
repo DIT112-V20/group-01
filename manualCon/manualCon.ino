@@ -2,25 +2,30 @@
 //By Evandro Copercini - 2018
 //
 //This example creates a bridge between Serial and Classical Bluetooth (SPP)
-//and also demonstrate that SerialBT have the same functionalities of a normal 
-
+//and also demonstrate that SerialBT have the same functionalities of a normal Serial
 #include <Smartcar.h>
 
 #include <FirebaseESP32.h>
 #include <WiFi.h>             //wifi library
-#define WIFI_SSID "OWNIT*******"             //replace SSID with your wifi username
-#define WIFI_PASSWORD "4F*******"          //replace PWD with your wifi password
+#define WIFI_SSID "OWNIT_24GHz_4E4C0D"             //replace SSID with your wifi username
+#define WIFI_PASSWORD "4F75D9E491"          //replace PWD with your wifi password
 //#define WIFI_LED D5                  //connect a led to any of the gpio pins of the board and replace pin_number with it eg. D4
 FirebaseData firebasedata;
-#define FIREBASE_HOST "https://*****-ce90b.firebaseio.com/"                         //link of api
-#define FIREBASE_AUTH "Z0Ea0vK4xmlByoYgI8mR1t2***********"           //database secret
+FirebaseData firebasedata1;
+FirebaseData firebasedata2;
+
+#define FIREBASE_HOST "https://testing2-ce90b.firebaseio.com/"                         //link of api
+#define FIREBASE_AUTH "Z0Ea0vK4xmlByoYgI8mR1t2oCz1l7qqDCrvyKS0V"           //database secret
 
 
-
-const float fSpeed = 0.5;  // a ground speed (m/sec) for going forward
-const float bSpeed = -0.5; // a ground speed (m/sec)y for going backward
+const float maxSpeed = 10;
+float fSpeed = 2.5;  // a ground speed (m/sec) for going forward
+float bSpeed = -2.5; // a ground speed (m/sec)y for going backward
+const float auto_fwd_speed = 1;
+const float auto_avoidObs_speed = 0.75;
 const int lDegrees = -75; // degrees to turn left
 const int rDegrees = 75;  // degrees to turn right
+
 
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
@@ -85,55 +90,94 @@ void loop() {
 }
 
 void handleInput() {
-  if (Firebase.getString(firebasedata, "/manual/forward")) {
 
-      String val = firebasedata.stringData();
-      Serial.println(val);
-      if (val == "on") {
-        car.setSpeed(fSpeed);
+
+  int all_offVal = 0;
+  
+
+  if (Firebase.getFloat(firebasedata1, "/manual/speed")) {
+    float speedVal = firebasedata1.floatData();
+    fSpeed = speedVal;
+    bSpeed = (-1) * speedVal;
+  }
+
+  if ( Firebase.getString(firebasedata, "/manual/forward")) {
+
+    String fwdVal = firebasedata.stringData();
+
+    if (fwdVal == "on") {
+
+      car.setSpeed(fSpeed);
+      car.setAngle(0);
+
+    } else if (fwdVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
+
+  }
+  if ( Firebase.getString(firebasedata, "/manual/backward") ) {
+    String bwdVal = firebasedata.stringData();
+    // Serial.println("bwd " + bwdVal + all_offVal);
+    if (bwdVal == "on") {
+      car.setSpeed(bSpeed);
+      car.setAngle(0);
+
+    } else if (bwdVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
+  }
+
+  if (Firebase.getString(firebasedata, "/manual/right") ) {
+    String rightVal = firebasedata.stringData();
+    // Serial.println("right " + rightVal + all_offVal);
+    if (rightVal == "on") {
+      car.setSpeed(fSpeed);
+      car.setAngle(rDegrees);
+    } else if (rightVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
+  }
+
+  if (Firebase.getString(firebasedata, "/manual/left")) {
+    String leftVal = firebasedata.stringData();
+    //Serial.println("left " + leftVal + all_offVal);
+    if (leftVal == "on") {
+      car.setSpeed(fSpeed);
+      car.setAngle(lDegrees);
+    }
+    else if (leftVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
+  }
+
+
+
+  Serial.println( all_offVal);
+  if (all_offVal == 4) {
+    car.setSpeed(0);
+    car.setAngle(0);
+  }
+
+
+if ( Firebase.getString(firebasedata2, "/auto")) {
+    String autoVal = firebasedata2.stringData();
+   // Serial.println(front.getDistance());
+    if (autoVal == "on") {
+      if (front.getDistance() <= 25 && front.getDistance() != 0) {
+        car.setSpeed(auto_avoidObs_speed);
+        car.setAngle(90);
+        delay(1000);
+      } else {
+        car.setSpeed(auto_fwd_speed);
         car.setAngle(0);
-      } else if (val == "off") {
-        car.setSpeed(0);
-      }  
-
+      }
+    } else if (autoVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
   }
-
-    if (Firebase.getString(firebasedata, "/manual/backward")) {
-
-    String val = firebasedata.stringData();
-    Serial.println(val);
-    if (val == "on") {
-      car.setSpeed(fSpeed);
-      car.setAngle(0);
-    } else if (val == "off") {
-      car.setSpeed(0);
-    }  
-
-  }
-
-    if (Firebase.getString(firebasedata, "/manual/left")) {
-
-    String val = firebasedata.stringData();
-    Serial.println(val);
-    if (val == "on") {
-      car.setSpeed(fSpeed);
-      car.setAngle(0);
-    } else if (val == "off") {
-      car.setSpeed(0);
-    }  
-
-  }
-
-    if (Firebase.getString(firebasedata, "/manual/right")) {
-
-    String val = firebasedata.stringData();
-    Serial.println(val);
-    if (val == "on") {
-      car.setSpeed(fSpeed);
-      car.setAngle(0);
-    } else if (val == "off") {
-      car.setSpeed(0);
-    }  
-
+  Serial.println( all_offVal);
+  if (all_offVal == 5) {
+    car.setSpeed(0);
+    car.setAngle(0);
   }
 }
