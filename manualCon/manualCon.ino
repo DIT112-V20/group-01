@@ -158,3 +158,26 @@ void handleInput() {
     car.setAngle(0);
   }
 }
+
+if ( Firebase.getString(firebasedata2, "/auto")) {
+    String autoVal = firebasedata2.stringData();
+   // Serial.println(front.getDistance());
+    if (autoVal == "on") {
+      if (front.getDistance() <= 25 && front.getDistance() != 0) {
+        car.setSpeed(auto_avoidObs_speed);
+        car.setAngle(90);
+        delay(1000);
+      } else {
+        car.setSpeed(auto_fwd_speed);
+        car.setAngle(0);
+      }
+    } else if (autoVal == "off") {
+      all_offVal = all_offVal + 1;
+    }
+  }
+  Serial.println( all_offVal);
+  if (all_offVal == 5) {
+    car.setSpeed(0);
+    car.setAngle(0);
+  }
+}
