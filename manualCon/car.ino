@@ -93,9 +93,13 @@ void handleInput() {
 
 
   int all_offVal = 0;
-  // Serial.println(all_offVal);
+  
 
-
+  if (Firebase.getFloat(firebasedata1, "/manual/speed")) {
+    float speedVal = firebasedata1.floatData();
+    fSpeed = speedVal;
+    bSpeed = (-1) * speedVal;
+  }
 
   if ( Firebase.getString(firebasedata, "/manual/forward")) {
 
