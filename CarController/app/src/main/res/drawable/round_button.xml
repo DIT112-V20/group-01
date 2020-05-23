@@ -6,9 +6,14 @@
         </shape>
     </item>
     <item android:state_pressed="true">
+
+
         <shape android:shape="oval">
-            <solid android:color="#FFF1F1"/>
+            <solid android:color="#800080"/>
         </shape>
     </item>
+
+
+
 
 </selector>
