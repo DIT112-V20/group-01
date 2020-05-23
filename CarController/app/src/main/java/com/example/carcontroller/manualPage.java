@@ -3,11 +3,15 @@ package com.example.carcontroller;
 
 //import android.support.v7.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +32,7 @@ public class manualPage extends AppCompatActivity {
     final DatabaseReference bwdStatus = myRef.child("manual").child("backward");
     final DatabaseReference rightStatus = myRef.child("manual").child("right");
     final DatabaseReference leftStatus = myRef.child("manual").child("left");
+    final DatabaseReference speedStatus = myRef.child("manual").child("speed");
 
 
 
@@ -37,6 +42,8 @@ public class manualPage extends AppCompatActivity {
     Button bwdButton;
     Button rightButton;
     Button leftButton;
+    SeekBar seekBar;
+    TextView textView;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -49,7 +56,8 @@ public class manualPage extends AppCompatActivity {
         bwdButton = (Button)findViewById(R.id.bwdButton);
         rightButton = (Button)findViewById(R.id.rightButton);
         leftButton = (Button)findViewById(R.id.leftButton);
-
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        textView = (TextView) findViewById(R.id.textView);
 
         //updateText(ledstatus1,textView1);
 
@@ -123,14 +131,38 @@ public class manualPage extends AppCompatActivity {
             }
         });
 
+        speedStatus.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                float value = dataSnapshot.getValue(float.class);
+                Log.d("file", "Value is: " + value);
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("file", "Failed to read value.", error.toException());
+            }
+        });
+
+
+
         fwdButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    v.setPressed(false);
                     fwdStatus.setValue("off");
 
                     return true;
                 }else{
+                    v.setPressed(true);
+
                     fwdStatus.setValue("on");
                 }
                 return false;
@@ -143,10 +175,12 @@ public class manualPage extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
+                    v.setPressed(false);
                     bwdStatus.setValue("off");
 
                     return true;
                 }else{
+                    v.setPressed(true);
                     bwdStatus.setValue("on");
                 }
                 return false;
@@ -159,10 +193,12 @@ public class manualPage extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
+                    v.setPressed(false);
                     rightStatus.setValue("off");
 
                     return true;
                 }else{
+                    v.setPressed(true);
                     rightStatus.setValue("on");
                 }
                 return false;
@@ -175,10 +211,12 @@ public class manualPage extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP){
+                    v.setPressed(false);
                     leftStatus.setValue("off");
 
                     return true;
                 }else{
+                    v.setPressed(true);
                     leftStatus.setValue("on");
                 }
                 return false;
@@ -186,6 +224,28 @@ public class manualPage extends AppCompatActivity {
 
 
         });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText("" + progress + "%");
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                speedStatus.setValue(seekBar.getProgress()*0.05);
+
+            }
+        });
+        seekBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        seekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
     }
 }
