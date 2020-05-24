@@ -13,6 +13,7 @@
 FirebaseData firebasedata;
 FirebaseData firebasedata1;
 FirebaseData firebasedata2;
+FirebaseData firebasedata3;
 
 #define FIREBASE_HOST "https://testing2-ce90b.firebaseio.com/"                         //link of api
 #define FIREBASE_AUTH "Z0Ea0vK4xmlByoYgI8mR1t2oCz1l7q**********"           //database secret
@@ -161,6 +162,10 @@ void handleInput() {
 
 if ( Firebase.getString(firebasedata2, "/auto")) {
     String autoVal = firebasedata2.stringData();
+  
+    float covered_dis = car.getDistance();
+  Firebase.setFloat(firebasedata3, "/auto/covered_dis", covered_dis);
+  
    // Serial.println(front.getDistance());
     if (autoVal == "on") {
       if (front.getDistance() <= 25 && front.getDistance() != 0) {
