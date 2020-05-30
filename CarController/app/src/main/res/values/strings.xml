@@ -11,4 +11,10 @@
     <string name="left">Left</string>
     <string name="bwd">BWD</string>
     <string name="_0_0">0.0</string>
+    <string name="button1">Button</string>
+    <string name="button2">Button</string>
+    <string name="button">Button</string>
+    <string name="home">home</string>
+    <string name="_0_01">0.0</string>
+    <string name="todo">TODO</string>
 </resources>

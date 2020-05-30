@@ -3,10 +3,12 @@ package com.example.carcontroller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -28,12 +30,32 @@ public class AutoPage extends AppCompatActivity {
     float distance_val;
     ToggleButton autoMode;
     TextView distance;
+    Button manualButton2;
+    Button homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_page);
         autoMode= findViewById(R.id.auto_mode);
         distance = findViewById(R.id.distance);
+        manualButton2 = (Button)findViewById(R.id.manualButton2);
+        homeButton = (Button)findViewById(R.id.homeButton2);
+
+        manualButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AutoPage.this, manualPage.class);
+                startActivity(intent);
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AutoPage.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         autoStatus.addValueEventListener(new ValueEventListener() {
             @Override

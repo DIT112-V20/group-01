@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    Button manuButton;
+    Button manualButton;
     Button autoButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        manuButton = (Button) findViewById(R.id.manuButton);
+        manualButton = (Button) findViewById(R.id.manualButton);
         autoButton = (Button)findViewById(R.id.autoButton);
 
 
 
-        manuButton.setOnClickListener(new View.OnClickListener() {
+        manualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, manualPage.class);
