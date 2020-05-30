@@ -48,13 +48,10 @@
         android:layout_marginTop="96dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_toStartOf="@+id/manuButton"
-        android:layout_toLeftOf="@+id/manuButton"
         android:background="@drawable/round_button"
         android:text="@string/auto"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/manuButton"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
