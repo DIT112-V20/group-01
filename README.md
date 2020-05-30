@@ -1,3 +1,5 @@
+# Group-01 ![Arduino CI](https://github.com/DIT112-V20/group-01/workflows/Arduino%20CI/badge.svg) ![Java CI with Gradle](https://github.com/DIT112-V20/group-01/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 [1. Project Overview](https://github.com/DIT112-V20/group-01#project-overview)
 * [What is the idea of our project?](https://github.com/DIT112-V20/group-01#what-is-the-idea-of-our-project)
 * [Why will we make it?](https://github.com/DIT112-V20/group-01#why-will-we-make-it)
