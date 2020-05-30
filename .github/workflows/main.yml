@@ -22,5 +22,6 @@ jobs:
           arduino-cli lib install "Smartcar shield"
           arduino-cli lib install "Wifi"
           arduino-cli lib install "Firebase ESP32 Client"
+          arduino-cli lib instal "VL53L0X"
       - name: Build sketch
         run: arduino-cli compile -b esp32:esp32:esp32doit-devkit-v1 manualCon/manualCon.ino
