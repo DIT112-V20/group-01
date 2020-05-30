@@ -1,5 +1,5 @@
 [1. Project Overview](https://github.com/DIT112-V20/group-01#project-overview)
-* [What it the idea of our project?](https://github.com/DIT112-V20/group-01#what-is-the-idea-of-our-project)
+* [What is the idea of our project?](https://github.com/DIT112-V20/group-01#what-is-the-idea-of-our-project)
 * [Why will we make it?](https://github.com/DIT112-V20/group-01#why-will-we-make-it)
 * [How are we going to make it?](https://github.com/DIT112-V20/group-01#how-are-we-going-to-make-it)
 
@@ -7,7 +7,7 @@
 * [Obstacle Avoidance](https://github.com/DIT112-V20/group-01#obstacle-avoidance)
 * [Manual Control](https://github.com/DIT112-V20/group-01#manual-control)
 * [Autonomous Driving](https://github.com/DIT112-V20/group-01#autonomous-driving)
-* [Covered Distance Odometer](https://github.com/DIT112-V20/group-01#covered-distance-odometer)
+* [Display Covered Distance ](https://github.com/DIT112-V20/group-01#display-covered-distance)
 
 [3. Resources](https://github.com/DIT112-V20/group-01#resources)
 * [Software](https://github.com/DIT112-V20/group-01#software)
@@ -20,7 +20,9 @@
 
 [5. User Manual](https://github.com/DIT112-V20/group-01#user-manual)
 
-[6. Team](https://github.com/DIT112-V20/group-01#team)
+[6. Product Demo](https://github.com/DIT112-V20/group-01#product-demo)
+
+[7. Team](https://github.com/DIT112-V20/group-01#team)
 # **Project Overview**
 ## What is the idea of our project?
 Our main idea of the project is a car with capabilities of autonomously driving and detecting obstacles around.
@@ -42,8 +44,8 @@ Using the mobile application, the user will be able to manually control the spee
 In the manual control screen, there are four direction buttons (Forward, backward, right, left), when the user presses one of them the car starts moving in that direction and stops when the button is released. And there's a speed SeekBar that allows the user to increase/decease the speed of the car.
 ## Autonomous Driving
 Using the mobile application, the user will have the choice to activate the Autonomous Driving mode.
-In the autonomous driving screen, when the user presses the "on" button, the car starts moving  forward until it detects an obstacle, it will  then stop, change its direction, and keep moving until the user presses the "off" button.
-## Covered Distance Odometer
+When activating the autonomous driving mode, the car starts moving forward until it detects obstalces on its way, so it changes direction and keeps moving until the user deactivates the autonomous driving.
+## Display Covered Distance 
 In Autonomous Driving mode, once the car stops, the application will display to the users the distance driven by the car. 
 
 # Resources
@@ -63,7 +65,7 @@ In Autonomous Driving mode, once the car stops, the application will display to 
 Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip) from our Github page.
 ## Setup the car
 * Download [Arduino IDE](https://www.arduino.cc/en/main/software)
-* Install the following libraries: [SmartCar shield library](https://www.arduinolibraries.info/libraries/smartcar-shield), [Firebase library](https://www.arduinolibraries.info/libraries/firebase-esp32-client), [Distance sensor library](https://www.arduinolibraries.info/libraries/vl53-l0-x), [Wifi.h library](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)
+* Install the following libraries: [SmartCar shield library](https://www.arduinolibraries.info/libraries/smartcar-shield), [Firebase library](https://www.arduinolibraries.info/libraries/firebase-esp32-client), [Distance sensor library](https://www.arduinolibraries.info/libraries/vl53-l0-x), [Wifi library](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)
 * Compile the [Arduino sketch](https://github.com/DIT112-V20/group-01/blob/master/manualCon/manualCon.ino) Using Arduino IDE.
 ## Setup the app
 * Download [Android Studio IDE](https://developer.android.com/studio)
@@ -81,7 +83,10 @@ Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip
 
 ![](images/auto.png)
 
-5. The distance driven by the car will now be displyed in the screen.
+5. The distance driven by the car will now be displyed on the screen.
+
+# Product Demo
+Watch it here : [https://youtu.be/2E3qfQQXuCo](https://youtu.be/2E3qfQQXuCo)
 
 # Team
 * Karam Khatib guskarkh@student.gu.se
