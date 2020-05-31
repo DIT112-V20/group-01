@@ -68,7 +68,7 @@ Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip
 ## Setup the car
 * Download [Arduino IDE](https://www.arduino.cc/en/main/software)
 * Install the following libraries: [SmartCar shield library](https://www.arduinolibraries.info/libraries/smartcar-shield), [Firebase library](https://www.arduinolibraries.info/libraries/firebase-esp32-client), [Distance sensor library](https://www.arduinolibraries.info/libraries/vl53-l0-x), [Wifi library](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)
-* Compile the [Arduino sketch](https://github.com/DIT112-V20/group-01/blob/master/manualCon/manualCon.ino) Using Arduino IDE.
+* Compile the [Arduino sketch](https://github.com/DIT112-V20/group-01/blob/master/manualCon/manualCon.ino) Using Arduino IDE, and replace the hashes in WIFI_SSID and WIFI_PASSWORD with your own credentials.
 ## Setup the app
 * Download [Android Studio IDE](https://developer.android.com/studio)
 * Upload the application on your device using [Andriod Studio](https://developer.android.com/training/basics/firstapp/running-app)
