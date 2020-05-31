@@ -74,17 +74,11 @@ Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip
 * Upload the application on your device using [Andriod Studio](https://developer.android.com/training/basics/firstapp/running-app)
 
 # User Manual
+![manual](https://user-images.githubusercontent.com/43995000/83341714-c9339480-a2e6-11ea-8bdc-9fa18e625489.gif)
 1. Open the CarController application.
 2. You're now in the home screen, You have two options to operate, manual and auto.
-![](images/welcome.png)
 3. Tap on manual if you wish to control the car manually, you have now 4 buttons to control the direction of the car and a speed SeekBar to adjust the speed of the car.
-
-![](images/manual.png)
-
 4. Tap on auto and you're now in the autonomous driving screen, if you wish to start the autonomous driving mode press the "off" button to change the state from off to on and the car will start the run, click on the same button when you want the car to stop.
-
-![](images/auto.png)
-
 5. The distance driven by the car will now be displyed on the screen.
 
 # Product Demo
