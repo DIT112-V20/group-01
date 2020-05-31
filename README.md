@@ -75,6 +75,7 @@ Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip
 
 # User Manual
 <img align="right"  src="https://user-images.githubusercontent.com/43995000/83341714-c9339480-a2e6-11ea-8bdc-9fa18e625489.gif">
+
 1. Open the CarController application.
 
 2. You're now in the home screen, You have two options to operate, manual and auto.
