@@ -19,6 +19,7 @@
 * [Import the code](https://github.com/DIT112-V20/group-01#import-the-code)
 * [Setup the car](https://github.com/DIT112-V20/group-01#setup-the-car)
 * [Setup the app](https://github.com/DIT112-V20/group-01#setup-the-app)
+* [Establish Connection](https://github.com/DIT112-V20/group-01#establish-connection)
 
 [5. User Manual](https://github.com/DIT112-V20/group-01#user-manual)
 
@@ -69,9 +70,20 @@ Download the [package](https://github.com/DIT112-V20/group-01/archive/master.zip
 * Download [Arduino IDE](https://www.arduino.cc/en/main/software)
 * Install the following libraries: [SmartCar shield library](https://www.arduinolibraries.info/libraries/smartcar-shield), [Firebase library](https://www.arduinolibraries.info/libraries/firebase-esp32-client), [Distance sensor library](https://www.arduinolibraries.info/libraries/vl53-l0-x), [Wifi library](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)
 * Compile the [Arduino sketch](https://github.com/DIT112-V20/group-01/blob/master/manualCon/manualCon.ino) Using Arduino IDE, and replace the hashes in WIFI_SSID and WIFI_PASSWORD with your own credentials.
+
+![key1](https://user-images.githubusercontent.com/43995000/83351009-c5346080-a340-11ea-8102-4a2b5a5a86ec.png)
+
 ## Setup the app
 * Download [Android Studio IDE](https://developer.android.com/studio)
 * Upload the application on your device using [Andriod Studio](https://developer.android.com/training/basics/firstapp/running-app)
+## Establish Connection
+* Follow this [guide](https://medium.com/coinmonks/arduino-to-android-real-time-communication-for-iot-with-firebase-60df579f962) to connect the car and the app to a Firebase database.
+* Replce the hashes for FIREBASE_HOST and FIREBASE_AUTH in the [Arduino sketch](https://github.com/DIT112-V20/group-01/blob/master/manualCon/manualCon.ino) with your own credentials.
+
+![key2](https://user-images.githubusercontent.com/43995000/83351041-02005780-a341-11ea-8631-0435a4d40dc0.png)
+
+
+
 
 <img align="right"  src="https://user-images.githubusercontent.com/43995000/83341714-c9339480-a2e6-11ea-8bdc-9fa18e625489.gif">
 
